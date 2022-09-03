@@ -1,0 +1,13 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: route-tls-cert                          # имя сертификата, через него потом можно смотреть статус
+  namespace: {{ .Values.namespace }}
+spec:
+  secretName: ingress-tls-demoapp                # название секрета, в который положить приватный ключ и сертификат
+  issuerRef:
+    kind: ClusterIssuer                      # ссылка на "выдаватель" сертификатов, см. подробнее ниже
+    name: letsencrypt
+  commonName: {{ .Values.route }}                    # основной домен сертификата
+  dnsNames:                                  # дополнительыне домены сертификата (Как минимум одно DNS имя или IP-адрес должен быть указан)
+    - {{ .Values.route }}
