@@ -29,5 +29,5 @@ jobs:
       
     - uses: actions/upload-artifact@master
       with:
-        name: build ${{github.sha}}
-        path: ./dist/*
+        name: build
+        path: ./target/untitled-1.0-SNAPSHOT.jar
