@@ -48,3 +48,22 @@ jobs:
       run: docker build -t valerahex/demoapp:latest .
     - name: Publish Docker image
       run: docker push valerahex/demoapp:latest
+
+
+  deploy:
+    name: Deploy to Kubernetes
+    runs-on: ubuntu-latest
+    needs: [ docker-build ]
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: 'Deploy'
+        working-directory: ./helm/demoapp
+        uses: deliverybot/helm@v1
+        with:
+          release: 'demoapp'
+          token: '${{ github.token }}'
+          chart: 'demoapp'
+          value-files: 'values.yaml'
+        env:
+          KUBECONFIG_FILE: ${{ secrets.KUBECONFIG }}
