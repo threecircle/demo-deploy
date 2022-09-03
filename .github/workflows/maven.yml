@@ -60,11 +60,10 @@ jobs:
 
       - uses: 'deliverybot/helm@v1'
         name: Deploy
-        working-directory: ./helm/demoapp
         with:
           release: 'demoapp'
           token: '${{ github.token }}'
-          chart: 'demoapp'
+          chart: './helm/demoapp'
           value-files: 'values.yaml'
         env:
           KUBECONFIG_FILE: ${{ secrets.KUBECONFIG }}
