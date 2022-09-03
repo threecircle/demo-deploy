@@ -1,0 +1,22 @@
+kind: Ingress
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: demoapp-ingress
+  namespace: {{ .Values.namespace}}
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - {{ .Values.route }}
+      secretName: ingress-tls-demoapp
+  rules:
+    - host: {{ .Values.route }}
+      http:
+        paths:
+          - path: /
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: demoapp-service
+                port:
+                  number: 80

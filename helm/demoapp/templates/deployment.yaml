@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demoapp
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: demoapp
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: demoapp
+  template:
+    metadata:
+      annotations:
+        rollme: {{ randAlphaNum 5 | quote }}
+      labels:
+        app: demoapp
+    spec:
+      containers:
+        - name: demoapp
+          image: {{ .Values.image }}
+          ports:
+            - containerPort: {{ .Values.appPort }}
