@@ -58,8 +58,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: 'Deploy'
-        working-directory: ./helm/demoapp
-        uses: deliverybot/helm@v1
+        working-directory: './helm/demoapp'
+        uses: 'deliverybot/helm@v1'
         with:
           release: 'demoapp'
           token: '${{ github.token }}'
