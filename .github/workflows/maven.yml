@@ -58,12 +58,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - uses: 'deliverybot/helm@v1'
+      - uses: WyriHaximus/github-action-helm3@v2
         name: Deploy
         with:
-          release: 'demoapp'
-          token: '${{ github.token }}'
-          chart: './helm/demoapp'
-          value-files: 'values.yaml'
-        env:
-          KUBECONFIG_FILE: ${{ secrets.KUBECONFIG }}
+          exec: helm upgrade -i -f ./helm/demoapp/values.yaml demoapp ./helm/demoapp 
+          kubeconfig: '${{ secrets.KUBECONFIG }}'
