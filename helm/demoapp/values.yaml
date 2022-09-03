@@ -2,6 +2,6 @@ namespace: demoapp-namespace
 
 image: valerahex/demoapp:latest
 appPort: 4567
-route: demoapp.archiwise.ru
+route: demo.archiwise.ru
 replicaCount: 1
 
