@@ -26,8 +26,8 @@ jobs:
 
     - name: Build with Maven
       run: mvn -B package --file pom.xml
-
+      
     - uses: actions/upload-artifact@master
-        with:
-          name: target
-          path: ./target/untitled-1.0-SNAPSHOT.jar
+      with:
+        name: build ${{github.sha}}
+        path: ./dist/*
