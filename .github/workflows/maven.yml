@@ -77,7 +77,7 @@ jobs:
       - name: send message
         uses: appleboy/telegram-action@master
         with:
-          to: 401154201
-          token: 5621444090:AAGyJELTZWe3yuPg5ZZdUAGRZ-z6An4S9eo
+          to: ${{ secrets.TELEGRAM_CHAT }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
           document: ./untitled-1.0-SNAPSHOT.jar
           
